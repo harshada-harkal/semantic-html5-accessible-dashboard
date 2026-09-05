@@ -4,22 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Accessible Enterprise Dashboard</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Enterprise Dashboard</h1>
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-        <nav aria-label="Main navigation">
-            <a href="index.html">Home</a>
-            <a href="pages/dashboard.html">Dashboard</a>
-            <a href="pages/users.html">Users</a>
-            <a href="pages/reports.html">Reports</a>
-        </nav>
+    <header>
+        <div class="header-content">
+
+            <h1>Enterprise Dashboard</h1>
+
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="pages/dashboard.html">Dashboard</a>
+                <a href="pages/users.html">Users</a>
+                <a href="pages/reports.html">Reports</a>
+            </nav>
+
+            <!-- Theme Control -->
+            <button
+                type="button"
+                id="themeToggle"
+                aria-label="Toggle dark and light theme">
+                Toggle Theme
+            </button>
+
+        </div>
     </header>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
 
     <aside>
         <h2>Sidebar</h2>
@@ -31,124 +54,333 @@
         </nav>
     </aside>
 
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
     <main>
 
-        <section>
-            <h2>Dashboard Overview</h2>
+        <!-- =================================================
+             DASHBOARD OVERVIEW
+             ================================================= -->
 
-            <article>
-                <h3>Total Users</h3>
-                <p>250</p>
-            </article>
+        <section aria-labelledby="dashboard-heading">
 
-            <article>
-                <h3>Total Reports</h3>
-                <p>45</p>
-            </article>
+            <h2 id="dashboard-heading">
+                Dashboard Overview
+            </h2>
+
+            <!-- Responsive CSS Grid -->
+            <div class="dashboard-grid">
+
+                <!-- Card 1 -->
+                <article class="glass-card">
+
+                    <h3>Total Users</h3>
+
+                    <p>250</p>
+
+                </article>
+
+
+                <!-- Card 2 -->
+                <article class="glass-card">
+
+                    <h3>Total Reports</h3>
+
+                    <p>45</p>
+
+                </article>
+
+
+                <!-- Card 3 -->
+                <article class="glass-card">
+
+                    <h3>Active Projects</h3>
+
+                    <p>18</p>
+
+                </article>
+
+
+                <!-- Card 4 -->
+                <article class="glass-card">
+
+                    <h3>System Status</h3>
+
+                    <p>Active</p>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <section>
-            <h2>User Information</h2>
 
-            <table>
-                <caption>User Details</caption>
+        <!-- =================================================
+             USER INFORMATION
+             ================================================= -->
 
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                    </tr>
-                </thead>
+        <section aria-labelledby="users-heading">
 
-                <tbody>
-                    <tr>
-                        <td>Harshada</td>
-                        <td>harshada@example.com</td>
-                        <td>Student</td>
-                    </tr>
+            <h2 id="users-heading">
+                User Information
+            </h2>
 
-                    <tr>
-                        <td>Rahul</td>
-                        <td>rahul@example.com</td>
-                        <td>Admin</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Responsive table container -->
+            <div class="table-container">
+
+                <table>
+
+                    <caption>
+                        User Details
+                    </caption>
+
+                    <thead>
+
+                        <tr>
+
+                            <th scope="col">
+                                Name
+                            </th>
+
+                            <th scope="col">
+                                Email
+                            </th>
+
+                            <th scope="col">
+                                Role
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Harshada
+                            </td>
+
+                            <td>
+                                harshada@example.com
+                            </td>
+
+                            <td>
+                                Student
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Rahul
+                            </td>
+
+                            <td>
+                                rahul@example.com
+                            </td>
+
+                            <td>
+                                Admin
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </section>
 
-        <section>
-            <h2>Contact Form</h2>
+
+        <!-- =================================================
+             CONTACT FORM
+             ================================================= -->
+
+        <section aria-labelledby="contact-heading">
+
+            <h2 id="contact-heading">
+                Contact Form
+            </h2>
 
             <form>
 
                 <fieldset>
 
-                    <legend>Contact Information</legend>
+                    <legend>
+                        Contact Information
+                    </legend>
 
-                    <label for="name">Name:</label>
+
+                    <!-- Name -->
+                    <label for="name">
+                        Name:
+                    </label>
+
                     <input
                         type="text"
                         id="name"
                         name="name"
+                        autocomplete="name"
                         required
                         aria-required="true">
 
-                    <br><br>
 
-                    <label for="email">Email:</label>
+                    <!-- Email -->
+                    <label for="email">
+                        Email:
+                    </label>
+
                     <input
                         type="email"
                         id="email"
                         name="email"
+                        autocomplete="email"
                         required
                         aria-required="true">
 
-                    <br><br>
 
-                    <label for="message">Message:</label>
+                    <!-- Message -->
+                    <label for="message">
+                        Message:
+                    </label>
+
                     <textarea
                         id="message"
                         name="message"
-                        required></textarea>
+                        rows="5"
+                        required
+                        aria-required="true"></textarea>
 
-                    <br><br>
 
-                    <button type="submit">Submit</button>
+                    <!-- Submit -->
+                    <button type="submit">
+                        Submit
+                    </button>
 
                 </fieldset>
 
             </form>
+
         </section>
 
     </main>
 
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
     <footer>
-        <p>&copy; 2026 Accessible Enterprise Dashboard</p>
+
+        <p>
+            &copy; 2026 Accessible Enterprise Dashboard
+        </p>
+
     </footer>
-<dialog id="infoDialog">
 
-    <h2>Dashboard Information</h2>
 
-    <p>
-        This dashboard provides accessible information about users,
-        reports, and system activities.
-    </p>
+    <!-- =====================================================
+         INFORMATION DIALOG
+         ===================================================== -->
 
+    <dialog id="infoDialog">
+
+        <h2>
+            Dashboard Information
+        </h2>
+
+        <p>
+            This dashboard provides accessible information
+            about users, reports, and system activities.
+        </p>
+
+        <button
+            type="button"
+            id="closeDialog">
+            Close
+        </button>
+
+    </dialog>
+
+
+    <!-- Open Dialog Button -->
     <button
         type="button"
-        onclick="document.getElementById('infoDialog').close()">
-        Close
+        id="openDialog"
+        aria-controls="infoDialog">
+        Open Information
     </button>
 
-</dialog>
 
-<button
-    type="button"
-    onclick="document.getElementById('infoDialog').showModal()">
-    Open Information
-</button>
-    
+    <!-- =====================================================
+         THEME & DIALOG JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+        /* ================================================
+           DARK / LIGHT THEME
+           ================================================ */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        themeToggle.addEventListener("click", function () {
+
+            const html = document.documentElement;
+
+            const currentTheme =
+                html.getAttribute("data-theme");
+
+            if (currentTheme === "dark") {
+
+                html.setAttribute("data-theme", "light");
+
+            } else {
+
+                html.setAttribute("data-theme", "dark");
+
+            }
+
+        });
+
+
+        /* ================================================
+           INFORMATION DIALOG
+           ================================================ */
+
+        const infoDialog =
+            document.getElementById("infoDialog");
+
+        const openDialog =
+            document.getElementById("openDialog");
+
+        const closeDialog =
+            document.getElementById("closeDialog");
+
+
+        openDialog.addEventListener("click", function () {
+
+            infoDialog.showModal();
+
+        });
+
+
+        closeDialog.addEventListener("click", function () {
+
+            infoDialog.close();
+
+        });
+
+    </script>
+
 </body>
 
 </html>
