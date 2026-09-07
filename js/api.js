@@ -1,13 +1,10 @@
-// api.js
-// REST API functions
+const API_URL = "https://fakestoreapi.com/products";
 
-const API_URL = "https://jsonplaceholder.typicode.com/users";
-
-async function fetchUsers() {
+export async function fetchProducts() {
     const response = await fetch(API_URL);
 
     if (!response.ok) {
-        throw new Error("Failed to fetch users");
+        throw new Error("Failed to fetch products");
     }
 
     return await response.json();
