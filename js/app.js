@@ -15,7 +15,14 @@ productSection.innerHTML = `
 main.appendChild(productSection);
 
 const productList = document.getElementById("productList");
+const searchInput = document.createElement("input");
 
+searchInput.type = "search";
+searchInput.id = "productSearch";
+searchInput.placeholder = "Search products...";
+searchInput.setAttribute("aria-label", "Search products");
+
+productSection.insertBefore(searchInput, productList);
 async function loadProducts() {
     productList.innerHTML = "<p>Loading products...</p>";
 
