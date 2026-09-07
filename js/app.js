@@ -409,3 +409,4 @@ sortProducts.addEventListener(
    ================================================ */
 
 loadProducts();
+
