@@ -1,4 +1,5 @@
 import { fetchProducts } from "./api.js";
+import { savePreferences, getPreferences } from "./storage.js";
 
 let products = [];
 let filteredProducts = [];
@@ -189,7 +190,7 @@ function populateCategories() {
 
 
 /* ================================================
-   FILTER + SEARCH + SORT
+   UPDATE PRODUCTS
    ================================================ */
 
 function updateProducts() {
@@ -256,12 +257,23 @@ function updateProducts() {
     }
 
 
+    /* ============================================
+       SAVE USER PREFERENCES
+       ============================================ */
+
+    savePreferences({
+        search: searchInput.value,
+        category: selectedCategory,
+        sort: selectedSort
+    });
+
+
     displayProducts(filteredProducts);
 }
 
 
 /* ================================================
-   LOAD PRODUCTS FROM REST API
+   LOAD PRODUCTS
    ================================================ */
 
 async function loadProducts() {
@@ -278,12 +290,35 @@ async function loadProducts() {
 
         populateCategories();
 
+        /* Restore saved preferences */
+
+        const preferences =
+            getPreferences();
+
+        searchInput.value =
+            preferences.search || "";
+
+        if (
+            preferences.category &&
+            [...categoryFilter.options].some(
+                (option) =>
+                    option.value === preferences.category
+            )
+        ) {
+            categoryFilter.value =
+                preferences.category;
+        }
+
+        sortProducts.value =
+            preferences.sort || "default";
+
         updateProducts();
 
     } catch (error) {
 
         productList.innerHTML = `
             <div role="alert">
+
                 <p>
                     Unable to load products.
                     Please try again later.
@@ -294,6 +329,7 @@ async function loadProducts() {
                     id="retryButton">
                     Retry
                 </button>
+
             </div>
         `;
 
