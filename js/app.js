@@ -1,16 +1,21 @@
 import { fetchProducts } from "./api.js";
-import { savePreferences, getPreferences } from "./storage.js";
+import {
+    savePreferences,
+    getPreferences
+} from "./storage.js";
 
 let products = [];
 let filteredProducts = [];
 
 const main = document.querySelector("main");
 
+
 /* ================================================
    PRODUCT SECTION
    ================================================ */
 
-const productSection = document.createElement("section");
+const productSection =
+    document.createElement("section");
 
 productSection.setAttribute(
     "aria-labelledby",
@@ -18,7 +23,9 @@ productSection.setAttribute(
 );
 
 productSection.innerHTML = `
-    <h2 id="products-heading">Products</h2>
+    <h2 id="products-heading">
+        Products
+    </h2>
 
     <div class="product-controls">
 
@@ -53,6 +60,7 @@ productSection.innerHTML = `
             </label>
 
             <select id="sortProducts">
+
                 <option value="default">
                     Default
                 </option>
@@ -72,6 +80,7 @@ productSection.innerHTML = `
                 <option value="name-za">
                     Name: Z to A
                 </option>
+
             </select>
         </div>
 
@@ -190,7 +199,7 @@ function populateCategories() {
 
 
 /* ================================================
-   UPDATE PRODUCTS
+   FILTER + SEARCH + SORT
    ================================================ */
 
 function updateProducts() {
@@ -205,6 +214,7 @@ function updateProducts() {
 
     const selectedSort =
         sortProducts.value;
+
 
     filteredProducts =
         products.filter((product) => {
@@ -258,7 +268,7 @@ function updateProducts() {
 
 
     /* ============================================
-       SAVE USER PREFERENCES
+       SAVE STATE
        ============================================ */
 
     savePreferences({
@@ -273,7 +283,7 @@ function updateProducts() {
 
 
 /* ================================================
-   LOAD PRODUCTS
+   LOAD PRODUCTS FROM API
    ================================================ */
 
 async function loadProducts() {
@@ -290,7 +300,10 @@ async function loadProducts() {
 
         populateCategories();
 
-        /* Restore saved preferences */
+
+        /* ========================================
+           RESTORE SAVED STATE
+           ======================================== */
 
         const preferences =
             getPreferences();
@@ -298,19 +311,27 @@ async function loadProducts() {
         searchInput.value =
             preferences.search || "";
 
-        if (
-            preferences.category &&
+        const categoryExists =
             [...categoryFilter.options].some(
                 (option) =>
-                    option.value === preferences.category
-            )
-        ) {
+                    option.value ===
+                    preferences.category
+            );
+
+        if (categoryExists) {
+
             categoryFilter.value =
                 preferences.category;
+
+        } else {
+
+            categoryFilter.value = "all";
         }
+
 
         sortProducts.value =
             preferences.sort || "default";
+
 
         updateProducts();
 
@@ -341,6 +362,7 @@ async function loadProducts() {
             error
         );
 
+
         const retryButton =
             document.getElementById("retryButton");
 
@@ -353,7 +375,7 @@ async function loadProducts() {
 
 
 /* ================================================
-   SEARCH EVENT
+   SEARCH
    ================================================ */
 
 searchInput.addEventListener(
@@ -363,7 +385,7 @@ searchInput.addEventListener(
 
 
 /* ================================================
-   CATEGORY EVENT
+   CATEGORY FILTER
    ================================================ */
 
 categoryFilter.addEventListener(
@@ -373,7 +395,7 @@ categoryFilter.addEventListener(
 
 
 /* ================================================
-   SORT EVENT
+   SORT
    ================================================ */
 
 sortProducts.addEventListener(
